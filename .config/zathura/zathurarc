@@ -1,0 +1,4 @@
+set recolor
+/* set recolor-keephue */
+set recolor-lightcolor \#282C34
+/* set recolor-reverse-video "true" */
