@@ -1,0 +1,4 @@
+{"python.jediEnabled": false,
+ "coc.source.vimtex.disableSyntaxes": false,
+ "coc.source.vimtex.enable": true 
+}
