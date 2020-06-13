@@ -30,12 +30,14 @@ let &t_EI = "\<Esc>[2 q"        " NORMAL mode
 "
 set laststatus=2                        " makes the status bar permanent
 set statusline=
-set statusline+=%#SpellCap#             " color for the left side. Run :so $VIMRUNTIME/syntax/hitest.vim
+" set statusline+=%#SpellCap#             " color for the left side. Run :so $VIMRUNTIME/syntax/hitest.vim
+set statusline+=%#Title#                " color for the left side. Run :so $VIMRUNTIME/syntax/hitest.vim
 set statusline+=\ %M                    " shows '+' if any changes have been made to the file
 set statusline+=\ %y                    " shows the curent filetype
 set statusline+=\ %F                    " shows full filepath of current file
 set statusline+=%=                      " everything after this will be on the right side
-set statusline+=%#WildMenu#             " color for the right side
+" set statusline+=%#WildMenu#             " color for the right side
+set statusline+=%#Question#             " color for the right side
 set statusline+=\ %c:[%l/%L]            " shows the curent c:l/L [column:line/total_lines] 
 
 
