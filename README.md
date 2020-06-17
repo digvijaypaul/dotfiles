@@ -9,4 +9,6 @@ A collection of my dotfiles and configs
 - [zathura](https://pwmt.org/projects/zathura/)
 - [LaTeX](https://www.latex-project.org/)
 - [nodejs](https://nodejs.org/en/) (used by vim plugin CoC) 
+- [yarn](https://yarnpkg.com/) (used by vim plugin CoC) 
 - [kitty](https://sw.kovidgoyal.net/kitty/)
+
