@@ -100,3 +100,14 @@ colorscheme onedark
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 "let g:vimtex_fold_enabled = 1
+
+"----------------------------- kitty fix -------------------------------------
+" Scrolling in vim would make background disappear. Other solutions posted at 
+" https://github.com/kovidgoyal/kitty/issues/108
+" vim hardcodes background color erase even if the terminfo file does
+        " not contain bce (not to mention that libvte based terminals
+        " incorrectly contain bce in their terminfo files). This causes
+        " incorrect background rendering when using a color theme with a
+        " background color.
+        " let &t_ut=''
+" Fixed by changing kitty theme to match vim theme
