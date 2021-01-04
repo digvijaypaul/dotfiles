@@ -1,5 +1,7 @@
 " Sourced from /usr/share/vim/vim82/vimrc_example.vim 
-source $VIMRUNTIME/vimrc_example.vim
+if !has('nvim')
+    source $VIMRUNTIME/vimrc_example.vim
+endif
 source $HOME/.config/coc/coc.vim
 "source $HOME/.vim/indentline_config.vim
 "=== === === === === === === === My config === === === === === === === === ===
@@ -21,9 +23,11 @@ set cursorline
 " 4 -> solid underscore
 " 5 -> blinking vertical bar
 " 6 -> solid vertical bar 
-let &t_SI = "\<Esc>[5 q"        " INSERT mode
-let &t_SR = "\<Esc>[4 q"        " REPLACE mode
-let &t_EI = "\<Esc>[2 q"        " NORMAL mode
+if !has('nvim')
+    let &t_SI = "\<Esc>[5 q"        " INSERT mode
+    let &t_SR = "\<Esc>[4 q"        " REPLACE mode
+    let &t_EI = "\<Esc>[2 q"        " NORMAL mode
+endif    
 
 
 "___________________________ Status bar settings _____________________________
