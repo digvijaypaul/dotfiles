@@ -11,4 +11,4 @@ A collection of my dotfiles and configs
 - [nodejs](https://nodejs.org/en/) (used by vim plugin CoC) 
 - [yarn](https://yarnpkg.com/) (used by vim plugin CoC) 
 - [kitty](https://sw.kovidgoyal.net/kitty/)
-
+- [joplin-terminal](https://joplinapp.org/terminal/)
