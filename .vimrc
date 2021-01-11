@@ -88,6 +88,7 @@ Plug 'lervag/vimtex'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'chrisbra/Colorizer'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
