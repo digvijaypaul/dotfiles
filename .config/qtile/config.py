@@ -144,7 +144,7 @@ screens = [
                 # widget.TextBox("default config", name="default"),
                 # widget.Sep(),
                 widget.CheckUpdates(background=colors["light_grey"]),
-                widget.CapsNumLockIndicator(background=colors["red"]),
+                # widget.CapsNumLockIndicator(background=colors["red"]),
                 widget.Volume(background=colors["purple"]),
                 widget.Systray(),
                 widget.Clock(background=colors["blue"],
