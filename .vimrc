@@ -6,12 +6,30 @@ source $HOME/.config/coc/coc.vim
 "source $HOME/.vim/indentline_config.vim
 "=== === === === === === === === My config === === === === === === === === ===
 
+set noswapfile
+set nobackup
+
 "_________________________ Page Formatting settings __________________________
 "
 set number              " shows the actual number for the line the cursor is 
 set relativenumber      "   on, and relative number for the surrounding lines
 set textwidth=78
 set cursorline
+set tabstop=4 softtabstop=4
+set scrolloff=12
+
+"_____________________________ Search settings _______________________________
+"
+" The following turns highlight search on only while searching, eliminating the
+" need to manually run the command `:noh` after a search
+augroup vimrc-incsearch-highlight
+  autocmd!
+  autocmd CmdlineEnter /,\? :set hlsearch
+  autocmd CmdlineLeave /,\? :set nohlsearch
+augroup END
+set ignorecase
+set smartcase
+set incsearch
 
 "_____________________________ Cursor settings _______________________________
 "
@@ -28,7 +46,7 @@ if !has('nvim')
     let &t_SR = "\<Esc>[4 q"        " REPLACE mode
     let &t_EI = "\<Esc>[2 q"        " NORMAL mode
 endif    
-
+" These settings are default in neovim
 
 "___________________________ Status bar settings _____________________________
 "
