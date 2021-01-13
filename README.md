@@ -3,7 +3,7 @@ A collection of my dotfiles and configs
 
 ## Packages required
 - [bash](https://www.gnu.org/software/bash/)
-- [vim](https://www.vim.org/)
+- [vim](https://www.vim.org/) or [neovim](https://neovim.io/)
 - [i3-gaps](https://github.com/Airblader/i3)
 - [polybar](https://polybar.github.io/)
 - [zathura](https://pwmt.org/projects/zathura/)
