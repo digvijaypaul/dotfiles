@@ -88,14 +88,14 @@ groups = [Group(i) for i in "asdfuiop"]
 
 # Put One-Dark hex-codes in a dictionary to easily specify colors 
 colors = {
-        "dark_grey": "#282C34",
+        "darkgrey": "#282C34",
         "red": "#E06C75",
         "green": "#98C379",
         "yellow": "#E5C07B",
         "blue": "#61AEFF",
         "purple": "#C678DD",
         "teal": "#56B6C2",
-        "light_grey": "#ABB2BF"
+        "lightgrey": "#ABB2BF"
 }
 
 # This is to call the `autostart.sh` file
@@ -116,10 +116,10 @@ for i in groups:
 layouts = [
     # layout.Max(),
     layout.MonadTall(border_focus=colors["blue"],
-        border_normal=colors["light_grey"],
+        border_normal=colors["lightgrey"],
         margin=15),
     layout.MonadWide(border_focus=colors["blue"],
-        border_normal=colors["light_grey"], margin=15),
+        border_normal=colors["lightgrey"], margin=15),
     layout.Bsp(fair=False, margin=5),
 ]
 
@@ -135,29 +135,29 @@ screens = [
         top=bar.Bar(
             [
                 widget.CurrentLayoutIcon(background=colors["yellow"],
-                    foreground=colors["dark_grey"]),
+                    foreground=colors["darkgrey"]),
                 widget.CurrentLayout(background=colors["yellow"],
-                    foreground=colors["dark_grey"]),
+                    foreground=colors["darkgrey"]),
                 widget.GroupBox(background=colors["green"],
-                    foreground=colors["light_grey"], 
+                    foreground=colors["lightgrey"], 
                     highlight_method="line",
                     highlight_color=[colors["green"], colors["purple"]], 
-                    inactive=colors["dark_grey"]),
+                    inactive=colors["darkgrey"]),
                 # widget.Sep(),
-                widget.WindowName(background=colors["dark_grey"],
-                    foreground=colors["light_grey"]),
+                widget.WindowName(background=colors["darkgrey"],
+                    foreground=colors["lightgrey"]),
                 # widget.TextBox("default config", name="default"),
                 # widget.Sep(),
-                widget.CheckUpdates(background=colors["light_grey"],
-                    foreground=colors["dark_grey"],
+                widget.CheckUpdates(background=colors["lightgrey"],
+                    foreground=colors["darkgrey"],
                     distro='Fedora', 
                     color_have_updates=colors["blue"],
-                    color_no_updates=colors["light_grey"]),
+                    color_no_updates=colors["lightgrey"]),
                 # widget.CapsNumLockIndicator(background=colors["red"]),
                 widget.Volume(background=colors["purple"]),
                 widget.Systray(),
                 widget.Clock(background=colors["blue"], 
-                    foreground=colors["dark_grey"], 
+                    foreground=colors["darkgrey"], 
                     format='%Y-%m-%d %a %H:%M:%S'),
             ],
             24,
