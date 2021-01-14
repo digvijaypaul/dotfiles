@@ -1,7 +1,7 @@
 # dotfiles
 A collection of my dotfiles and configs
 
-## Packages required
+## Packages used
 - [bash](https://www.gnu.org/software/bash/)
 - [vim](https://www.vim.org/) or [neovim](https://neovim.io/)
 - [i3-gaps](https://github.com/Airblader/i3)
