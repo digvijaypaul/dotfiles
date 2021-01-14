@@ -35,6 +35,7 @@ import subprocess
 from typing import List  # noqa: F401
 
 mod = "mod4"
+term = "kitty"
 
 keys = [
     # Switch between windows in current stack pane
@@ -65,7 +66,12 @@ keys = [
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "Return", lazy.spawn("kitty")),
+
+    # Launch a terminal window 
+    Key([mod], "Return", lazy.spawn(term)),
+
+    # Launch a browser
+    Key([mod], "b", lazy.spawn("firefox")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
