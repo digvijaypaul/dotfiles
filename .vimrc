@@ -96,6 +96,15 @@ map <F3> :colorscheme nord<CR>
 
 "_________________________________ Plugins ___________________________________
 "
+" auto-install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+  " autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+" List of plugins
 call plug#begin()
 
 Plug 'preservim/nerdtree'
@@ -107,9 +116,17 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'chrisbra/Colorizer'
 Plug 'dense-analysis/ale'
+Plug 'tpope/vim-surround'
+Plug 'sheerun/vim-polyglot'
+Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 
 call plug#end()
 
+" Automatically install missing plugins on startup
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 
 "_______________________________ Color config ________________________________
 "
