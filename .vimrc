@@ -50,6 +50,13 @@ endif
 
 "___________________________ Status bar settings _____________________________
 "
+" This function will be called in the staurs line to get a list of counts of
+" added, modified, and removed lines in the current buffer.
+function! GitStatus()
+  let [a, m, r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+
 set laststatus=2                        " makes the status bar permanent
 set statusline=
 " set statusline+=%#SpellCap#             " color for the left side. Run :so $VIMRUNTIME/syntax/hitest.vim
@@ -58,6 +65,7 @@ set statusline+=\ %M                    " shows '+' if any changes have been mad
 set statusline+=\ %y                    " shows the curent filetype
 set statusline+=\ %F                    " shows full filepath of current file
 set statusline+=%=                      " everything after this will be on the right side
+set statusline+=\ %{GitStatus()}
 " set statusline+=%#WildMenu#             " color for the right side
 set statusline+=%#Question#             " color for the right side
 set statusline+=\ %c:[%l/%L]            " shows the curent c:l/L [column:line/total_lines] 
@@ -143,7 +151,8 @@ let g:vimtex_view_method='zathura'
 "--------------------------- gitgutter config --------------------------------
 "
 " This setting allows gitgutter to work on the dotfiles tracked in the bare
-" git repository
+" git repository. I simply used the settings that were passed to the `config`
+" alias in the .bashrc
 let g:gitgutter_git_args='--git-dir=$HOME/.cfg --work-tree=$HOME'
 
 "----------------------------- kitty fix -------------------------------------
