@@ -17,7 +17,7 @@ set textwidth=78
 set cursorline
 set tabstop=4 softtabstop=4
 set scrolloff=12
-
+ 
 "_____________________________ Search settings _______________________________
 "
 " The following turns highlight search on only while searching, eliminating the
@@ -62,7 +62,6 @@ set statusline+=%=                      " everything after this will be on the r
 set statusline+=%#Question#             " color for the right side
 set statusline+=\ %c:[%l/%L]            " shows the curent c:l/L [column:line/total_lines] 
 
-
 "_______________________________ Key remapping _______________________________
 "
 " Remap localleader key from \ to ;. Used in vimtex 
@@ -104,9 +103,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   " autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-" List of plugins
 call plug#begin()
-
+" List of plugins
 Plug 'preservim/nerdtree'
 Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -115,10 +113,12 @@ Plug 'lervag/vimtex'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'chrisbra/Colorizer'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+Plug 'airblade/vim-gitgutter'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -134,12 +134,17 @@ set termguicolors               " enables vim truecolor support
 " set background=dark
 colorscheme onedark
 
-
 "____________________________ vimtex config __________________________________
 "
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 "let g:vimtex_fold_enabled = 1
+
+"--------------------------- gitgutter config --------------------------------
+"
+" This setting allows gitgutter to work on the dotfiles tracked in the bare
+" git repository
+let g:gitgutter_git_args='--git-dir=$HOME/.cfg --work-tree=$HOME'
 
 "----------------------------- kitty fix -------------------------------------
 " Scrolling in vim would make background disappear. Other solutions posted at 
