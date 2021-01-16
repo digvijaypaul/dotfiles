@@ -13,3 +13,4 @@ A collection of my dotfiles and configs
 - [kitty](https://sw.kovidgoyal.net/kitty/)
 - [joplin-terminal](https://joplinapp.org/terminal/)
 - [rofi](https://github.com/davatorium/rofi)
+- [ranger](https://github.com/ranger/ranger)
