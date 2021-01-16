@@ -1,4 +1,17 @@
+# Set document to dark mode by default 
 set recolor
-/* set recolor-keephue */
+# In dark mode change background color from black to one-dark grey 
 set recolor-lightcolor \#282C34
-/* set recolor-reverse-video "true" */
+# Next two lines keep the colors even in dark mode 
+set recolor-keephue
+# This line seems necessary when changing the background from black to
+# another color. Seems to work best on  text
+set recolor-reverse-video "true"
+map K zoom in
+map J zoom out
+map R reload
+map i recolor
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map p print
