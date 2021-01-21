@@ -36,19 +36,28 @@ from typing import List  # noqa: F401
 
 mod = "mod4"
 term = "kitty"
+browser = "firefox"
 
 keys = [
     # Switch between windows in current stack pane
-    Key([mod], "j", lazy.layout.down()),
-    Key([mod], "k", lazy.layout.up()),
-    Key([mod], "h", lazy.layout.left()),
-    Key([mod], "l", lazy.layout.right()),
+    Key([mod], "j", lazy.layout.down(),
+        desc="Move focus down in stack pane"),
+    Key([mod], "k", lazy.layout.up(), 
+        desc="Move focus up in stack pane"),
+    Key([mod], "h", lazy.layout.left(),
+        desc="Move focus left"),
+    Key([mod], "l", lazy.layout.right(),
+        desc="Move focus right"),
 
     # Move windows up or down in current stack
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
-    Key([mod, "shift"], "h", lazy.layout.swap_left()),
-    Key([mod, "shift"], "l", lazy.layout.swap_right()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
+        desc="Move window down in current stack "),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(),
+        desc="Move window down in current stack "),
+    Key([mod, "shift"], "h", lazy.layout.swap_left(),
+        desc="Move window to the left stack"),
+    Key([mod, "shift"], "l", lazy.layout.swap_right(),
+        desc="Move window to the right stack"),
 
     # Switch window focus to other pane(s) of stack
     # Key([mod], "space", lazy.layout.next()),
@@ -59,29 +68,34 @@ keys = [
     # Swap panes of split stack
     # Key([mod, "shift"], "space", lazy.layout.rotate()),
     # Flip layout
-    Key([mod, "shift"], "space", lazy.layout.flip()),
+    Key([mod, "shift"], "space", lazy.layout.flip(),
+        desc="Swap panes of split stack"),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
+    Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
+        desc="Toggle between split and unsplit sides of stack"),
 
     # Launch a terminal window 
-    Key([mod], "Return", lazy.spawn(term)),
+    Key([mod], "Return", lazy.spawn(term), desc="Launch terminal (kitty)"),
 
     # Launch a browser
-    Key([mod], "b", lazy.spawn("firefox")),
+    Key([mod], "b", lazy.spawn(browser), desc="Launch browser (firefox)"),
 
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout()),
-    Key([mod], "w", lazy.window.kill()),
+    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
 
-    Key([mod, "control"], "r", lazy.restart()),
-    Key([mod, "control"], "q", lazy.shutdown()),
-    Key([mod], "r", lazy.spawncmd()),
-    Key([mod], "m", lazy.window.toggle_fullscreen()),
-    Key([mod], "z", lazy.window.toggle_floating()),
+    Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
+    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
+    Key([mod], "r", lazy.spawncmd(),
+        desc="Spawn a command using a prompt widget"),
+    Key([mod], "m", lazy.window.toggle_fullscreen(),
+        desc="Toggle fullscreen mode"),
+    Key([mod], "z", lazy.window.toggle_floating(),
+        desc="Toggle floating mode"),
 ]
 
 groups = [Group(i) for i in "asdfuiop"]
@@ -107,10 +121,12 @@ def autostart():
 for i in groups:
     keys.extend([
         # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen()),
+        Key([mod], i.name, lazy.group[i.name].toscreen(),
+            desc="Switch to group {}".format(i.name)),
 
         # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
+            desc="Switch to & move focused window to group {}".format(i.name)),
     ])
 
 layouts = [
