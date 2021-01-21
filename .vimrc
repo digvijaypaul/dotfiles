@@ -63,7 +63,7 @@ set statusline=
 set statusline+=%#Title#                " color for the left side. Run :so $VIMRUNTIME/syntax/hitest.vim
 set statusline+=\ %M                    " shows '+' if any changes have been made to the file
 set statusline+=\ %y                    " shows the curent filetype
-set statusline+=\ %F                    " shows full filepath of current file
+set statusline+=\ %f                    " shows only the name of current file
 set statusline+=%=                      " everything after this will be on the right side
 set statusline+=\ %{GitStatus()}
 " set statusline+=%#WildMenu#             " color for the right side
