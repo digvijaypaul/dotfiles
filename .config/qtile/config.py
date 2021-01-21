@@ -63,7 +63,8 @@ keys = [
     # Key([mod], "space", lazy.layout.next()),
 
     # Launch rofi with drun modi
-    Key([mod], "space", lazy.spawn("rofi -show drun")),
+    Key([mod], "space", lazy.spawn("rofi -show drun"),
+        desc="Launch rofi"),
 
     # Swap panes of split stack
     # Key([mod, "shift"], "space", lazy.layout.rotate()),
@@ -166,7 +167,7 @@ screens = [
                 # widget.Sep(),
                 widget.CheckUpdates(background=colors["lightgrey"],
                     foreground=colors["darkgrey"],
-                    distro='Fedora', 
+                    distro='Manjaro', 
                     color_have_updates=colors["blue"],
                     color_no_updates=colors["lightgrey"]),
                 # widget.CapsNumLockIndicator(background=colors["red"]),
@@ -175,6 +176,7 @@ screens = [
                 widget.Clock(background=colors["blue"], 
                     foreground=colors["darkgrey"], 
                     format='%Y-%m-%d %a %H:%M:%S'),
+                widget.QuickExit(background=colors["red"])
             ],
             24,
         ),
