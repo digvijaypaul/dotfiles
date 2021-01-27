@@ -59,6 +59,16 @@ keys = [
     Key([mod, "shift"], "l", lazy.layout.swap_right(),
         desc="Move window to the right stack"),
 
+    # Resize windows
+    Key([mod], "equal", lazy.layout.grow(),
+        desc="Increase the size of a window"),
+    Key([mod], "minus", lazy.layout.shrink(),
+        desc="Decrease the size of a window"),
+    Key([mod, "shift"], "equal", lazy.layout.maximize(),
+        desc="Maximize the size of a window"),
+    Key([mod, "shift"], "minus", lazy.layout.reset(),
+        desc="Reset the size of all windows"),
+
     # Switch window focus to other pane(s) of stack
     # Key([mod], "space", lazy.layout.next()),
 
@@ -89,10 +99,14 @@ keys = [
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
 
+    # System binds
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
-    Key([mod], "r", lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"),
+
+    # Key([mod], "r", lazy.spawncmd(),
+    #     desc="Spawn a command using a prompt widget"),
+
+   # Toggle modes other than tiling mode 
     Key([mod], "m", lazy.window.toggle_fullscreen(),
         desc="Toggle fullscreen mode"),
     Key([mod], "z", lazy.window.toggle_floating(),
