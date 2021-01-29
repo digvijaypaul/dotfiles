@@ -13,7 +13,8 @@ set nobackup
 "
 set number              " shows the actual number for the line the cursor is 
 set relativenumber      "   on, and relative number for the surrounding lines
-set textwidth=78
+" set textwidth=78
+set colorcolumn=80
 set cursorline
 set tabstop=4 softtabstop=4
 set scrolloff=12
