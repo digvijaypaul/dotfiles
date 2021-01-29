@@ -190,7 +190,7 @@ screens = [
                 widget.Clock(background=colors["blue"], 
                     foreground=colors["darkgrey"], 
                     format='%Y-%m-%d %a %H:%M:%S'),
-                widget.QuickExit(background=colors["red"])
+                # widget.QuickExit(background=colors["red"])
             ],
             24,
         ),
