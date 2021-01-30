@@ -14,3 +14,37 @@ A collection of my dotfiles and configs
 - [joplin-terminal](https://joplinapp.org/terminal/)
 - [rofi](https://github.com/davatorium/rofi)
 - [ranger](https://github.com/ranger/ranger)
+
+### Neovim 
+I attempt to keep one config file for both vim and neovim.
+#### Import .vimrc config to init.vim
+See `:h nvim-from-vim` for info.
+#### Import Coc settings from .vim folder
+Symlink `coc-settings.json` from `~/.vim`:
+```
+ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
+```
+
+### Coc 
+#### Packages used
+- coc-pyright
+- coc-vimtex
+
+### Qtile 
+#### Autostart
+The `autostart.sh` file is used to set the wallpaper on boot. When creating a shell
+script it must be made into an executable file. This can be done by:
+```
+$ chmod +x path/to/file
+```
+in our case,
+```
+$ chmod +x ~/.config/qtile/autostart.sh
+```
+
+### Zathura
+#### Plugins
+For zathura to display any file it needs the requisite plugin to also be installed.
+e.g. 
+- `zathura-pdf-poppler` or `zathura-pdf-mupdf` plugin for viewing PDFs.
+- `zatura-cb` for viewing comic books
