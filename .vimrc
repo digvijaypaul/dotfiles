@@ -14,6 +14,8 @@ set nobackup
 set number              " shows the actual number for the line the cursor is 
 set relativenumber      "   on, and relative number for the surrounding lines
 " set textwidth=78
+" set wrap              
+set linebreak           " breaks lines at word end instead of in between
 set colorcolumn=80
 set cursorline
 set tabstop=4 softtabstop=4
@@ -76,6 +78,10 @@ set statusline+=\ %c:[%l/%L]            " shows the curent c:l/L [column:line/to
 " Remap localleader key from \ to ;. Used in vimtex 
 let maplocalleader=";"
 
+" Move up and down lines in a paragraph that doesn't have line breaks
+nnoremap j gj
+nnoremap k gk
+
 " Navigate splits using Ctrl + h/j/k/l instead of Ctrl + w -> Ctrl + h/j/k/l
 nnoremap <C-h> <C-W>h		
 nnoremap <C-j> <C-W>j
@@ -128,6 +134,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
