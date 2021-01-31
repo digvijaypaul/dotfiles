@@ -21,7 +21,7 @@ I attempt to keep one config file for both vim and neovim.
 See `:h nvim-from-vim` for info.
 #### Import Coc settings from .vim folder
 Symlink `coc-settings.json` from `~/.vim`:
-```
+```bash
 ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 ```
 
@@ -30,7 +30,7 @@ ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 - coc-pyright
 - coc-vimtex
 - coc-r-lsp
-	- Requires the [R Language Server](https://github.com/REditorSupport/languageserver) which can be obtained from CRAN:
+	- Requires the [R Language Server](https://github.com/REditorSupport/languageserver) which can be obtained from CRAN. At the R prompt:
 		```r
 		install.packages("languageserver")
 		```
@@ -40,12 +40,12 @@ ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 #### Autostart
 The `autostart.sh` file is used to set the wallpaper on boot. When creating a shell
 script it must be made into an executable file. This can be done by:
-```
-$ chmod +x path/to/file
+```bash
+chmod +x path/to/file
 ```
 in our case,
-```
-$ chmod +x ~/.config/qtile/autostart.sh
+```bash
+chmod +x ~/.config/qtile/autostart.sh
 ```
 
 ### Zathura
