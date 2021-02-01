@@ -20,6 +20,8 @@ set colorcolumn=80
 set cursorline
 set tabstop=4 softtabstop=4
 set scrolloff=12
+set splitbelow splitright   " Changes automatic positioning of split windows to 
+                              " bottom and right instead of top and left
  
 "_____________________________ Search settings _______________________________
 "
@@ -73,9 +75,10 @@ set statusline+=\ %{GitStatus()}
 set statusline+=%#Question#             " color for the right side
 set statusline+=\ %c:[%l/%L]            " shows the curent c:l/L [column:line/total_lines] 
 
-"_______________________________ Key remapping _______________________________
+"_______________________________ Key remappings _______________________________
 "
-" Remap localleader key from \ to ;. Used in vimtex 
+" Remap localleader key from \ to ;. Used in vimtex and Nvim-R
+let mapleader=","
 let maplocalleader=";"
 
 " Move up and down lines in a paragraph that doesn't have line breaks
@@ -87,6 +90,15 @@ nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
+" Make adjusting split sizes easier
+noremap <silent> <C-Left> :vertical resize +5<CR>
+noremap <silent> <C-Right> :vertical resize -5<CR>
+noremap <silent> <C-Down> :resize +5<CR>
+noremap <silent> <C-Up> :resize -5<CR>
+" Toggle horizontal and vertical orientation of split windows
+map <Leader>th <C-w>H
+map <Leader>tk <C-w>K
+
 " Write with ZZ
 nnoremap ZZ :w<CR>
 " Save and quit with Zz (default ZZ)
@@ -107,6 +119,18 @@ map <C-n> :NERDTreeToggle<CR>
 map <F1> :colorscheme onedark<CR>
 map <F2> :colorscheme palenight<CR>
 map <F3> :colorscheme nord<CR>
+
+" Nvim-R binds
+" Use Ctrl+Space to do omnicompletion:
+if has('nvim') || has('gui_running')
+    inoremap <C-Space> <C-x><C-o>
+else
+    inoremap <Nul> <C-x><C-o>
+endif
+
+" Press the space bar to send lines and selection to R:
+vmap <Space> <Plug>RDSendSelection
+nmap <Space> <Plug>RDSendLine
 
 "_________________________________ Plugins ___________________________________
 "
@@ -135,6 +159,7 @@ Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
