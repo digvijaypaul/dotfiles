@@ -2,28 +2,31 @@
 if !has('nvim')
     source $VIMRUNTIME/vimrc_example.vim
 endif
-source $HOME/.config/coc/coc.vim
-"source $HOME/.vim/indentline_config.vim
-"=== === === === === === === === My config === === === === === === === === ===
 
+source $HOME/.config/coc/coc.vim
+"=== === === === === === === === My config === === === === === === === === ===
+"
 set noswapfile
 set nobackup
 
-"_________________________ Page Formatting settings __________________________
+"_________________________ Page Formatting settings ___________________________
 "
 set number              " shows the actual number for the line the cursor is 
 set relativenumber      "   on, and relative number for the surrounding lines
 " set textwidth=78
-" set wrap              
-set linebreak           " breaks lines at word end instead of in between
+set wrap              
+set linebreak           " breaks lines at end of word instead of in the middle
 set colorcolumn=80
 set cursorline
 set tabstop=4 softtabstop=4
 set scrolloff=12
 set splitbelow splitright   " Changes automatic positioning of split windows to 
                               " bottom and right instead of top and left
- 
-"_____________________________ Search settings _______________________________
+                              
+" Return to last cursor position when opening files 
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+"______________________________ Search settings _______________________________
 "
 " The following turns highlight search on only while searching, eliminating the
 " need to manually run the command `:noh` after a search
@@ -32,11 +35,12 @@ augroup vimrc-incsearch-highlight
   autocmd CmdlineEnter /,\? :set hlsearch
   autocmd CmdlineLeave /,\? :set nohlsearch
 augroup END
+
 set ignorecase
 set smartcase
 set incsearch
 
-"_____________________________ Cursor settings _______________________________
+"______________________________ Cursor settings _______________________________
 "
 " The following is for VTE compatible terminals (urxvt, st, xterm, 
 " gnome-terminal 3.x, Konsole KDE5 and others) and wsltty
@@ -53,7 +57,7 @@ if !has('nvim')
 endif    
 " These settings are default in neovim
 
-"___________________________ Status bar settings _____________________________
+"____________________________ Status bar settings _____________________________
 "
 " This function will be called in the staurs line to get a list of counts of
 " added, modified, and removed lines in the current buffer.
@@ -132,7 +136,7 @@ endif
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
 
-"_________________________________ Plugins ___________________________________
+"__________________________________ Plugins ___________________________________
 "
 " auto-install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -143,7 +147,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-" List of plugins
+
 Plug 'preservim/nerdtree'
 Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -152,7 +156,6 @@ Plug 'lervag/vimtex'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'chrisbra/Colorizer'
-" Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
@@ -169,26 +172,25 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 
-"_______________________________ Color config ________________________________
+"________________________________ Color config ________________________________
 "
 set termguicolors               " enables vim truecolor support 
-" set background=dark
 colorscheme onedark
 
-"____________________________ vimtex config __________________________________
+"_______________________________ vimtex config ________________________________
 "
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 "let g:vimtex_fold_enabled = 1
 
-"--------------------------- gitgutter config --------------------------------
+"_____________________________ gitgutter config _______________________________
 "
 " This setting allows gitgutter to work on the dotfiles tracked in the bare
 " git repository. I simply used the settings that were passed to the `config`
 " alias in the .bashrc
 let g:gitgutter_git_args='--git-dir=$HOME/.cfg --work-tree=$HOME'
 
-"----------------------------- kitty fix -------------------------------------
+"_________________________________ kitty fix __________________________________
 " Scrolling in vim would make background disappear. Other solutions posted at 
 " https://github.com/kovidgoyal/kitty/issues/108
 " vim hardcodes background color erase even if the terminfo file does
