@@ -34,8 +34,8 @@ import subprocess
 
 from typing import List  # noqa: F401
 
-mod = "mod4"
-term = "kitty"
+mod     = "mod4"
+term    = "kitty"
 browser = "firefox"
 
 keys = [
@@ -117,14 +117,18 @@ groups = [Group(i) for i in "asdfuiop"]
 
 # Put One-Dark hex-codes in a dictionary to easily specify colors 
 colors = {
-        "darkgrey": "#282C34",
-        "red": "#E06C75",
-        "green": "#98C379",
-        "yellow": "#E5C07B",
-        "blue": "#61AEFF",
-        "purple": "#C678DD",
-        "teal": "#56B6C2",
-        "lightgrey": "#ABB2BF"
+        "black"       : "#282C34",
+        "white"       : "#ABB2BF",
+        "light_red"    : "#E06C75",
+        "dark_red"     : "#BE5046",
+        "green"       : "#98C379",
+        "yellow"      : "#E5C07B",
+        "orange"      : "#D19A66",
+        "blue"        : "#61AEFF",
+        "purple"      : "#C678DD",
+        "cyan"        : "#56B6C2",
+        "gutter_grey"  : "#4B5263",
+        "comment_grey" : "#5C6370"
 }
 
 # This is to call the `autostart.sh` file
@@ -146,18 +150,18 @@ for i in groups:
 
 layouts = [
     # layout.Max(),
-    layout.MonadTall(border_focus=colors["blue"],
-        border_normal=colors["lightgrey"],
-        margin=15),
-    layout.MonadWide(border_focus=colors["blue"],
-        border_normal=colors["lightgrey"], margin=15),
-    layout.Bsp(fair=False, margin=5),
+    layout.MonadTall(border_focus = colors["blue"],
+        border_normal             = colors["white"],
+        margin                    = 15),
+    layout.MonadWide(border_focus = colors["blue"],
+        border_normal             = colors["white"], margin = 15),
+    layout.Bsp(fair = False, margin = 5),
 ]
 
 widget_defaults = dict(
-    font='sans',
-    fontsize=12,
-    padding=3,
+    font        = 'sans',
+    fontsize    = 12,
+    padding     = 3,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -165,33 +169,32 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayoutIcon(background=colors["yellow"],
-                    foreground=colors["darkgrey"]),
-                widget.CurrentLayout(background=colors["yellow"],
-                    foreground=colors["darkgrey"]),
-                widget.GroupBox(background=colors["green"],
-                    foreground=colors["lightgrey"], 
-                    highlight_method="line",
-                    highlight_color=[colors["green"], colors["purple"]], 
-                    margin = 6,
-                    inactive=colors["darkgrey"]),
+                widget.CurrentLayoutIcon(background = colors["yellow"],
+                    foreground                      = colors["black"]),
+                widget.CurrentLayout(background = colors["yellow"],
+                    foreground                  = colors["black"]),
+                widget.GroupBox(background = colors["green"],
+                    foreground             = colors["white"],
+                    highlight_method       = "line",
+                    highlight_color        = [colors["green"], colors["purple"]],
+                    margin                 = 6,
+                    inactive               = colors["black"]),
                 # widget.Sep(),
-                widget.WindowName(background=colors["darkgrey"],
-                    foreground=colors["lightgrey"]),
-                # widget.TextBox("default config", name="default"),
+                widget.WindowName(background = colors["black"],
+                    foreground               = colors["white"]),
                 # widget.Sep(),
-                widget.CheckUpdates(background=colors["lightgrey"],
-                    foreground=colors["darkgrey"],
-                    distro='Arch', 
-                    color_have_updates=colors["blue"],
-                    color_no_updates=colors["lightgrey"]),
-                # widget.CapsNumLockIndicator(background=colors["red"]),
-                widget.Volume(background=colors["purple"]),
+                widget.CapsNumLockIndicator(background = colors["gutter_grey"]),
+                widget.CheckUpdates(background = colors["orange"],
+                    foreground                 = colors["black"],
+                    distro                     = 'Arch',
+                    color_have_updates         = colors["blue"],
+                    color_no_updates           = colors["white"]),
+                widget.Volume(background = colors["purple"]),
                 widget.Systray(),
-                widget.Clock(background=colors["blue"], 
-                    foreground=colors["darkgrey"], 
-                    format='%Y-%m-%d %a %H:%M:%S'),
-                # widget.QuickExit(background=colors["red"])
+                widget.Clock(background = colors["blue"],
+                    foreground          = colors["black"],
+                    format              = '%Y-%m-%d %a %H:%M:%S'),
+                # widget.QuickExit(background=colors["light_red"])
             ],
             24,
         ),
