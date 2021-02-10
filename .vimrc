@@ -13,15 +13,14 @@ set nobackup
 "
 set number              " shows the actual number for the line the cursor is 
 set relativenumber      "   on, and relative number for the surrounding lines
-" set textwidth=78
-set wrap              
+" set wrap               " Vim and neovim seem to wrap by default 
 set linebreak           " breaks lines at end of word instead of in the middle
 set colorcolumn=80
 set cursorline
-set tabstop=4 softtabstop=4
+set tabstop=4 softtabstop=4 expandtab
 set scrolloff=12
 set splitbelow splitright   " Changes automatic positioning of split windows to 
-                              " bottom and right instead of top and left
+                            "   bottom and right instead of top and left
                               
 " Return to last cursor position when opening files 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -77,7 +76,7 @@ set statusline+=%=                      " everything after this will be on the r
 set statusline+=\ %{GitStatus()}
 " set statusline+=%#WildMenu#             " color for the right side
 set statusline+=%#Question#             " color for the right side
-set statusline+=\ %c:[%l/%L]            " shows the curent c:l/L [column:line/total_lines] 
+set statusline+=\ %l/%L☰:\ %c           " shows the curent c:l/L [column:line/total_lines] 
 
 "_______________________________ Key remappings _______________________________
 "
@@ -95,10 +94,10 @@ nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 " Make adjusting split sizes easier
-noremap <silent> <C-Left> :vertical resize +5<CR>
-noremap <silent> <C-Right> :vertical resize -5<CR>
-noremap <silent> <C-Down> :resize +5<CR>
-noremap <silent> <C-Up> :resize -5<CR>
+noremap <silent> <C-Left> :vertical resize -5<CR>
+noremap <silent> <C-Right> :vertical resize +5<CR>
+noremap <silent> <C-Down> :resize +3<CR>
+noremap <silent> <C-Up> :resize -3<CR>
 " Toggle horizontal and vertical orientation of split windows
 map <Leader>th <C-w>H
 map <Leader>tk <C-w>K
@@ -126,15 +125,15 @@ map <F3> :colorscheme nord<CR>
 
 " Nvim-R binds
 " Use Ctrl+Space to do omnicompletion:
-if has('nvim') || has('gui_running')
-    inoremap <C-Space> <C-x><C-o>
-else
-    inoremap <Nul> <C-x><C-o>
-endif
+"if has('nvim') || has('gui_running')
+"    inoremap <C-Space> <C-x><C-o>
+"else
+"    inoremap <Nul> <C-x><C-o>
+"endif
 
 " Press the space bar to send lines and selection to R:
-vmap <Space> <Plug>RDSendSelection
-nmap <Space> <Plug>RDSendLine
+" nmap <Space> <Plug>RDSendLine
+" vmap <Space> <Plug>RDSendSelection
 
 "__________________________________ Plugins ___________________________________
 "
@@ -161,8 +160,14 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
+" ^This plugin makes it so that when you delete the first character of a line
+" it pulls the line below up. It also makes it so the pressing enter on a 
+" commented line in insert mode doesn't automatially comment the new line out.
+" This issue may only occur for vim files as they use `"` for comments which
+" this plugin would try to pair
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-startify'
+Plug 'godlygeek/tabular'
 
 call plug#end()
 
@@ -176,6 +181,7 @@ autocmd VimEnter *
 "
 set termguicolors               " enables vim truecolor support 
 colorscheme onedark
+let g:onedark_terminal_italics=1
 
 "_______________________________ vimtex config ________________________________
 "
@@ -198,5 +204,5 @@ let g:gitgutter_git_args='--git-dir=$HOME/.cfg --work-tree=$HOME'
         " incorrectly contain bce in their terminfo files). This causes
         " incorrect background rendering when using a color theme with a
         " background color.
-        " let &t_ut=''
+        let &t_ut=''
 " Fixed by changing kitty theme to match vim theme
