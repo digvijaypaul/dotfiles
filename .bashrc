@@ -149,7 +149,7 @@ ex ()
 # eval "$(rbenv init -)"
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias vim='nvim'
+# alias vim='nvim'
 export EDITOR='nvim'
 export VISUAL='nvim'
 # Enable vi mode in bash
