@@ -16,7 +16,7 @@ set relativenumber      "   on, and relative number for the surrounding lines
 " set wrap               " Vim and neovim seem to wrap by default 
 set linebreak           " breaks lines at end of word instead of in the middle
 set colorcolumn=80
-set cursorline
+" set cursorline
 set tabstop=4 softtabstop=4 expandtab
 set scrolloff=12
 set splitbelow splitright   " Changes automatic positioning of split windows to 
@@ -66,17 +66,24 @@ function! GitStatus()
 endfunction
 
 set laststatus=2                        " makes the status bar permanent
+
+" To check available colors or highlighting for status bar elements, run 
+" `:so $VIMRUNTIME/syntax/hitest.vim`. The elements that set the highlights
+" are surrounded by the `#` symbol
 set statusline=
-" set statusline+=%#SpellCap#             " color for the left side. Run :so $VIMRUNTIME/syntax/hitest.vim
-set statusline+=%#Title#                " color for the left side. Run :so $VIMRUNTIME/syntax/hitest.vim
-set statusline+=\ %M                    " shows '+' if any changes have been made to the file
-set statusline+=\ %y                    " shows the curent filetype
-set statusline+=\ %f                    " shows only the name of current file
+set statusline+=%#Directory#
+set statusline+=\ [%M]\                 " shows '+' if any changes have been made to the file
+set statusline+=%#IncSearch#
+set statusline+=\ %y\                   " shows the curent filetype
+set statusline+=%#StatusLine#
+set statusline+=\ %F                    " shows filepath of the file
+
 set statusline+=%=                      " everything after this will be on the right side
+
+set statusline+=%#Directory#
 set statusline+=\ %{GitStatus()}
-" set statusline+=%#WildMenu#             " color for the right side
-set statusline+=%#Question#             " color for the right side
-set statusline+=\ %l/%L☰:\ %c           " shows the curent c:l/L [column:line/total_lines] 
+set statusline+=%#SpellCap#
+set statusline+=\ %l/%L☰:\ %c\          " shows the curent c:l/L [column:line/total_lines] 
 
 "_______________________________ Key remappings _______________________________
 "
@@ -180,8 +187,9 @@ autocmd VimEnter *
 "________________________________ Color config ________________________________
 "
 set termguicolors               " enables vim truecolor support 
-colorscheme onedark
 let g:onedark_terminal_italics=1
+let g:palenight_terminal_italics=1
+colorscheme onedark
 
 "_______________________________ vimtex config ________________________________
 "
@@ -204,5 +212,5 @@ let g:gitgutter_git_args='--git-dir=$HOME/.cfg --work-tree=$HOME'
         " incorrectly contain bce in their terminfo files). This causes
         " incorrect background rendering when using a color theme with a
         " background color.
-        let &t_ut=''
+        " let &t_ut=''
 " Fixed by changing kitty theme to match vim theme
