@@ -117,16 +117,16 @@ groups = [Group(i) for i in "asdfuiop"]
 
 # Put One-Dark hex-codes in a dictionary to easily specify colors 
 colors = {
-        "black"       : "#282C34",
-        "white"       : "#ABB2BF",
+        "black"        : "#282C34",
+        "white"        : "#ABB2BF",
         "light_red"    : "#E06C75",
         "dark_red"     : "#BE5046",
-        "green"       : "#98C379",
-        "yellow"      : "#E5C07B",
-        "orange"      : "#D19A66",
-        "blue"        : "#61AEFF",
-        "purple"      : "#C678DD",
-        "cyan"        : "#56B6C2",
+        "green"        : "#98C379",
+        "yellow"       : "#E5C07B",
+        "orange"       : "#D19A66",
+        "blue"         : "#61AEFF",
+        "purple"       : "#C678DD",
+        "cyan"         : "#56B6C2",
         "gutter_grey"  : "#4B5263",
         "comment_grey" : "#5C6370"
 }
@@ -151,17 +151,21 @@ for i in groups:
 layouts = [
     # layout.Max(),
     layout.MonadTall(border_focus = colors["blue"],
-        border_normal             = colors["white"],
-        margin                    = 15),
+        border_normal = colors["black"],
+        border_width  = 1,
+        margin        = 15),
     layout.MonadWide(border_focus = colors["blue"],
-        border_normal             = colors["white"], margin = 15),
+        border_normal = colors["white"],
+        margin        = 15),
     layout.Bsp(fair = False, margin = 5),
 ]
 
 widget_defaults = dict(
-    font        = 'sans',
-    fontsize    = 12,
-    padding     = 3,
+    # Changing font from default 'sans' made the text appear more centered 
+    # instead of slightly too high in the bar
+    font     = 'JetBrains Mono Medium',
+    fontsize = 12,
+    padding  = 3,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -169,32 +173,32 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayoutIcon(background = colors["yellow"],
-                    foreground                      = colors["black"]),
-                widget.CurrentLayout(background = colors["yellow"],
-                    foreground                  = colors["black"]),
-                widget.GroupBox(background = colors["green"],
-                    foreground             = colors["white"],
-                    highlight_method       = "line",
-                    highlight_color        = [colors["green"], colors["purple"]],
-                    margin                 = 6,
-                    inactive               = colors["black"]),
-                # widget.Sep(),
+                widget.CurrentLayoutIcon(background = colors["gutter_grey"]),
+                widget.CurrentLayout(background = colors["gutter_grey"],
+                    foreground = colors["orange"]),
+                widget.GroupBox(background = colors["gutter_grey"],
+                    font             = "sans",
+                    highlight_method = "line",
+                    highlight_color  = [colors["green"], colors["green"]],
+                    margin_y         = 7,
+                    inactive         = colors["white"],
+                    this_current_screen_border = colors["green"]),
                 widget.WindowName(background = colors["black"],
-                    foreground               = colors["white"]),
-                # widget.Sep(),
-                widget.CapsNumLockIndicator(background = colors["gutter_grey"]),
+                    foreground = colors["white"]),
                 widget.CheckUpdates(background = colors["orange"],
-                    foreground                 = colors["black"],
-                    distro                     = 'Arch',
-                    color_have_updates         = colors["blue"],
-                    color_no_updates           = colors["white"]),
-                widget.Volume(background = colors["purple"]),
+                    foreground         = colors["black"],
+                    distro             = 'Arch',
+                    color_have_updates = colors["blue"],
+                    color_no_updates   = colors["white"],
+                    no_update_string   = 'No Updates'),
+                widget.CapsNumLockIndicator(background = colors["gutter_grey"],
+                    foreground = colors["white"]),
+                widget.Volume(background = colors["gutter_grey"],
+                    foreground = colors["purple"]),
                 widget.Systray(),
-                widget.Clock(background = colors["blue"],
-                    foreground          = colors["black"],
-                    format              = '%Y-%m-%d %a %H:%M:%S'),
-                # widget.QuickExit(background=colors["light_red"])
+                widget.Clock(background = colors["gutter_grey"],
+                    foreground = colors["blue"],
+                    format     = '%Y-%m-%d %a %H:%M:%S'),
             ],
             24,
         ),
