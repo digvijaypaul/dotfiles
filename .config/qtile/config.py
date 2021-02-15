@@ -116,19 +116,19 @@ keys = [
 groups = [Group(i) for i in "asdfuiop"]
 
 # Put One-Dark hex-codes in a dictionary to easily specify colors 
-colors = {
-        "black"        : "#282C34",
-        "white"        : "#ABB2BF",
-        "light_red"    : "#E06C75",
-        "dark_red"     : "#BE5046",
-        "green"        : "#98C379",
-        "yellow"       : "#E5C07B",
-        "orange"       : "#D19A66",
-        "blue"         : "#61AEFF",
-        "purple"       : "#C678DD",
-        "cyan"         : "#56B6C2",
-        "gutter_grey"  : "#4B5263",
-        "comment_grey" : "#5C6370"
+onedark = {
+    "black":         "#282C34",
+    "white":         "#ABB2BF",
+    "light_red":     "#E06C75",
+    "dark_red":      "#BE5046",
+    "green":         "#98C379",
+    "yellow":        "#E5C07B",
+    "orange":        "#D19A66",
+    "blue":          "#61AEFF",
+    "purple":        "#C678DD",
+    "cyan":          "#56B6C2",
+    "gutter_grey":   "#4B5263",
+    "comment_grey":  "#5C6370"
 }
 
 # This is to call the `autostart.sh` file
@@ -150,22 +150,28 @@ for i in groups:
 
 layouts = [
     # layout.Max(),
-    layout.MonadTall(border_focus = colors["blue"],
-        border_normal = colors["black"],
-        border_width  = 1,
-        margin        = 15),
-    layout.MonadWide(border_focus = colors["blue"],
-        border_normal = colors["white"],
-        margin        = 15),
-    layout.Bsp(fair = False, margin = 5),
+    layout.MonadTall(border_focus=onedark["blue"],
+                     border_normal=onedark["black"],
+                     border_width=1,
+                     single_border_width=0,
+                     margin=10),
+    layout.MonadWide(border_focus=onedark["blue"],
+                     border_normal=onedark["white"],
+                     border_width=1,
+                     margin=10),
+    layout.Bsp(border_focus=onedark["light_red"],
+               border_normal=onedark["black"],
+               border_width=1,
+               margin=5,
+               fair=False)
 ]
 
 widget_defaults = dict(
     # Changing font from default 'sans' made the text appear more centered 
     # instead of slightly too high in the bar
-    font     = 'JetBrains Mono Medium',
-    fontsize = 12,
-    padding  = 3,
+    font="JetBrains Mono Bold",
+    fontsize=13,
+    padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -173,38 +179,43 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayoutIcon(background = colors["gutter_grey"]),
-                widget.CurrentLayout(background = colors["gutter_grey"],
-                    foreground = colors["orange"]),
-                widget.GroupBox(background = colors["gutter_grey"],
-                    font             = "sans",
-                    highlight_method = "line",
-                    highlight_color  = [colors["green"], colors["green"]],
-                    margin_y         = 7,
-                    inactive         = colors["white"],
-                    this_current_screen_border = colors["green"]),
-                widget.WindowName(background = colors["black"],
-                    foreground = colors["white"]),
-                widget.CheckUpdates(background = colors["orange"],
-                    foreground         = colors["black"],
-                    distro             = 'Arch',
-                    color_have_updates = colors["blue"],
-                    color_no_updates   = colors["white"],
-                    no_update_string   = 'No Updates'),
-                widget.CapsNumLockIndicator(background = colors["gutter_grey"],
-                    foreground = colors["white"]),
-                widget.Volume(background = colors["gutter_grey"],
-                    foreground = colors["purple"]),
+                widget.CurrentLayoutIcon(background=onedark["gutter_grey"]),
+                widget.CurrentLayout(background=onedark["gutter_grey"],
+                                     foreground=onedark["orange"]),
+                widget.GroupBox(background=onedark["comment_grey"],
+                                font="JetBrains Mono Medium",
+                                highlight_method="line",
+                                highlight_color=[onedark["green"],
+                                                 onedark["green"]],
+                                this_current_screen_border=onedark["green"],
+                                margin_x=0,
+                                margin_y=5,
+                                inactive=onedark["black"],
+                                urgent_border=onedark["dark_red"]),
+                widget.WindowName(background=onedark["black"],
+                                  foreground=onedark["white"],
+                                  font="JetBrains Mono Medium"),
+                widget.CheckUpdates(background=onedark["orange"],
+                                    foreground=onedark["black"],
+                                    distro='Arch',
+                                    color_have_updates=onedark["blue"],
+                                    color_no_updates=onedark["white"],
+                                    no_update_string='No Updates'),
+                widget.CapsNumLockIndicator(background=onedark["comment_grey"],
+                                            foreground=onedark["white"],
+                                            font="JetBrains Mono Medium"),
+                widget.Volume(background=onedark["gutter_grey"],
+                              foreground=onedark["purple"]),
                 widget.Systray(),
-                widget.Clock(background = colors["gutter_grey"],
-                    foreground = colors["blue"],
-                    format     = '%Y-%m-%d %a %H:%M:%S'),
+                widget.Clock(background=onedark["gutter_grey"],
+                             foreground=onedark["blue"],
+                             format='%Y-%m-%d %a %H:%M:%S')
             ],
             24,
         ),
     ),
 ]
-
+    
 # Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
