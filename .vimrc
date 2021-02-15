@@ -1,4 +1,4 @@
-" Sourced from /usr/share/vim/vim82/vimrc_example.vim 
+" Sourced from /usr/share/vim/vim82/vimrc_example.vim
 if !has('nvim')
     source $VIMRUNTIME/vimrc_example.vim
 endif
@@ -83,7 +83,11 @@ set statusline+=%=                      " everything after this will be on the r
 set statusline+=%#Directory#
 set statusline+=\ %{GitStatus()}
 set statusline+=%#SpellCap#
-set statusline+=\ %l/%L☰:\ %c\          " shows the curent c:l/L [column:line/total_lines] 
+set statusline+=\ ☰%l/%L:\ %c\          " shows the curent c:l/L [column:line/total_lines] 
+
+"_________________________ Filetype specific settings _________________________
+"
+au FileType markdown set spell conceallevel=2 
 
 "_______________________________ Key remappings _______________________________
 "
