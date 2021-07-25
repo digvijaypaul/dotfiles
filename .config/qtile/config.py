@@ -163,13 +163,17 @@ layouts = [
                border_normal=onedark["black"],
                border_width=1,
                margin=5,
-               fair=False)
+               fair=False),
+    layout.RatioTile(border_focus=onedark["light_red"],
+                     border_normal=onedark["black"],
+                     border_width=1,
+                     margin=5)
 ]
 
 widget_defaults = dict(
     # Changing font from default 'sans' made the text appear more centered 
     # instead of slightly too high in the bar
-    font="JetBrains Mono Bold",
+    font="JetBrainsMono Nerd Font Bold",
     fontsize=13,
     padding=3,
 )
@@ -181,9 +185,9 @@ screens = [
             [
                 widget.CurrentLayoutIcon(background=onedark["gutter_grey"]),
                 widget.CurrentLayout(background=onedark["gutter_grey"],
-                                     foreground=onedark["orange"]),
+                                     foreground=onedark["orange"],),
                 widget.GroupBox(background=onedark["comment_grey"],
-                                font="JetBrains Mono Medium",
+                                font="JetBrainsMono medium",
                                 highlight_method="line",
                                 highlight_color=[onedark["green"],
                                                  onedark["green"]],
@@ -198,9 +202,8 @@ screens = [
                 widget.CheckUpdates(background=onedark["orange"],
                                     foreground=onedark["black"],
                                     distro='Arch',
-                                    color_have_updates=onedark["blue"],
-                                    color_no_updates=onedark["white"],
-                                    no_update_string='No Updates'),
+                                    colour_have_updates=onedark["black"],
+                                    execute='doas pacman -Syu'),
                 widget.CapsNumLockIndicator(background=onedark["comment_grey"],
                                             foreground=onedark["white"],
                                             font="JetBrains Mono Medium"),
@@ -215,7 +218,7 @@ screens = [
         ),
     ),
 ]
-    
+
 # Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
@@ -227,10 +230,10 @@ mouse = [
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
-main = None 
-follow_mouse_focus = True 
-bring_front_click = False 
-cursor_warp = False 
+main = None
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
 floating_layout = layout.Floating(float_rules=[ {'wmclass': 'confirm'}, {'wmclass': 'dialog'},
     {'wmclass': 'download'},
     {'wmclass': 'error'},
