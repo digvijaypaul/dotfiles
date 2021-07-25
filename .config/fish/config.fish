@@ -1,7 +1,12 @@
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+abbr --add syu 'doas pacman -Syu'
+abbr --add dp 'doas pacman'
+abbr --add pss 'pacman -Ss'
 abbr --add v 'nvim'
 abbr --add cpom 'config push origin master'
-abbr --add cc 'config checkout'
+abbr --add cch 'config checkout'
 abbr --add cs 'config status'
 abbr --add ca 'config add'
 abbr --add ccm 'config commit -m "'
+abbr --add prs 'doas pacman -Rs'
