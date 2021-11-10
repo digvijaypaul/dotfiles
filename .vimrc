@@ -66,28 +66,27 @@ function! GitStatus()
 endfunction
 
 set laststatus=2                        " makes the status bar permanent
-
 " To check available colors or highlighting for status bar elements, run 
 " `:so $VIMRUNTIME/syntax/hitest.vim`. The elements that set the highlights
 " are surrounded by the `#` symbol
 set statusline=
 set statusline+=%#Directory#
-set statusline+=\ [%M]\                 " shows '+' if any changes have been made to the file
-set statusline+=%#IncSearch#
 set statusline+=\ %y\                   " shows the curent filetype
 set statusline+=%#StatusLine#
+set statusline+=\ [%M]\                 " shows '+' if any changes have been made to the file
+set statusline+=%#Pmenu#
 set statusline+=\ %F                    " shows filepath of the file
 
 set statusline+=%=                      " everything after this will be on the right side
 
 set statusline+=%#Directory#
 set statusline+=\ %{GitStatus()}
-set statusline+=%#SpellCap#
+set statusline+=%#Number#
 set statusline+=\ ☰%l/%L:\ %c\          " shows the curent c:l/L [column:line/total_lines] 
 
 "_________________________ Filetype specific settings _________________________
 "
-au FileType markdown set spell conceallevel=2 
+au FileType markdown set conceallevel=2 
 
 "_______________________________ Key remappings _______________________________
 "
@@ -111,7 +110,9 @@ noremap <silent> <C-Down> :resize +3<CR>
 noremap <silent> <C-Up> :resize -3<CR>
 " Toggle horizontal and vertical orientation of split windows
 map <Leader>th <C-w>H
+map <Leader>tj <C-w>J
 map <Leader>tk <C-w>K
+map <Leader>tl <C-w>L
 
 " Write with ZZ
 nnoremap ZZ :w<CR>
@@ -131,8 +132,6 @@ imap jj <Esc>
 map <C-n> :NERDTreeToggle<CR>
 
 map <F1> :colorscheme onedark<CR>
-map <F2> :colorscheme palenight<CR>
-map <F3> :colorscheme nord<CR>
 
 " Nvim-R binds
 " Use Ctrl+Space to do omnicompletion:
@@ -159,18 +158,15 @@ endif
 call plug#begin()
 
 Plug 'preservim/nerdtree'
-Plug 'joshdick/onedark.vim'
+Plug 'navarasu/onedark.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
 Plug 'lervag/vimtex'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'arcticicestudio/nord-vim'
 Plug 'chrisbra/Colorizer'
 Plug 'tpope/vim-surround'
-Plug 'sheerun/vim-polyglot'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'airblade/vim-gitgutter'
-Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'       
 " ^This plugin makes it so that when you delete the first character of a line
 " it pulls the line below up. It also makes it so the pressing enter on a 
 " commented line in insert mode doesn't automatially comment the new line out.
@@ -179,6 +175,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-startify'
 Plug 'godlygeek/tabular'
+Plug 'tpope/vim-repeat'
+Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSupdate'}
 
 call plug#end()
 
@@ -191,9 +190,45 @@ autocmd VimEnter *
 "________________________________ Color config ________________________________
 "
 set termguicolors               " enables vim truecolor support 
-let g:onedark_terminal_italics=1
-let g:palenight_terminal_italics=1
+
+" TODO: ~~DONE: Use onedark#extend_highlight to change the color of the Boolean 
+      " highlight group from dark_yellow to red. Info at joshdick/onedark.vim~~
+      " If possible look into file type specific highlighting to change the
+      " Operator highlight group from purple to cyan in .R files.
+      " See ~/.vim/plugged/onedark.vim/colors/onedark.vim
+      " au FileType r set conceallevel=2 
+
+
+"     autocmd!
+"     " Change Boolean highlight group color from dark_yellow to red
+"     autocmd ColorScheme * call onedark#extend_highlight("Boolean", { "fg": { "gui": "#e06c75" } })
+"   augroup END
+" endif
+
+" let g:onedark_terminal_italics=1
+"
+" The above commented out section pertains to josdhdick/onedark.vim, which I 
+" have replaced with navarasu/onedark.nvim for treesitter support. If I don't 
+" feel the need to go back I will delete the block above
+
 colorscheme onedark
+
+"____________________________Treesitter config_________________________________
+"
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
 
 "_______________________________ vimtex config ________________________________
 "
