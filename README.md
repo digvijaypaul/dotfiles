@@ -2,7 +2,7 @@
 A collection of my dotfiles and configs
 
 ## Operating System
-This configuration has been done mainly on a Manjaro KDE installation, though these files should work with any distro or even Mac. I installed first i3 and then qtile. I installed first i3 and then qtile. The latter is what is currently being used and updated. I imagine doing an installation without a preexisting desktop environment would require quite a bit more configuration including icon sets/cursor packs etc.
+This configuration has been done mainly on a Manjaro KDE installation, though these files should work with any distro or even Mac. I installed first i3 and then qtile.The latter is what is currently being used and updated. I imagine doing an installation without a preexisting desktop environment would require quite a bit more configuration including icon sets/cursor packs etc.
 
 ## Packages used
 - [bash](https://www.gnu.org/software/bash/)
@@ -23,11 +23,11 @@ This configuration has been done mainly on a Manjaro KDE installation, though th
 - [JetBrains Mono](https://www.jetbrains.com/lp/mono/) (optionally, the Nerd Font patched version for ranger devicons)
 
 ### Neovim 
-I attempt to keep one config file for both vim and neovim.
-#### Import .vimrc config to init.vim
-See `:h nvim-from-vim` for info.
-#### Import Coc settings from .vim folder
-Symlink `coc-settings.json` from `~/.vim` to `~.config/nvim`:
+~~I attempt to keep one config file for both vim and neovim.~~
+~~#### Import .vimrc config to init.vim~~
+~~See `:h nvim-from-vim` for info.~~
+~~#### Import Coc settings from .vim folder~~
+~~Symlink `coc-settings.json` from `~/.vim` to `~.config/nvim`:~~
 ```bash
 ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 ```
