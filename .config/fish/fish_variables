@@ -7,6 +7,7 @@ SETUVAR _fish_abbr_ccm:config\x20commit\x20\x2dm\x20\x22
 SETUVAR _fish_abbr_cpom:config\x20push\x20origin\x20master
 SETUVAR _fish_abbr_cs:config\x20status
 SETUVAR _fish_abbr_dp:doas\x20pacman
+SETUVAR _fish_abbr_nv:nvim
 SETUVAR _fish_abbr_prs:doas\x20pacman\x20\x2dRs
 SETUVAR _fish_abbr_pss:pacman\x20\x2dSs
 SETUVAR _fish_abbr_syu:doas\x20pacman\x20\x2dSyu
