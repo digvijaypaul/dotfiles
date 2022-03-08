@@ -31,12 +31,8 @@ This configuration has been done mainly on a Manjaro KDE installation, though th
 ```bash
 ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 ```
-#### Coloring issue
-There is an issue in neovim but not in vim where if you change the colorscheme while editing a file and change back to the original colorscheme, some text loses their syntax highlighting. Switching from `joshdick/one-dark.vim` and `drewtemplemeyer/palenight.vim` to `srcery-colors/srcery-vim` or `arcticicestudio/nord-vim` causes this to happen but switching between the former two does not. 
-
-Another issue that occured in both vim and neovim: It seems that the installation of `srcery-vim` messed up some other syntax highlighting. In the part of the `.vimrc` that lists all the plugins, the name of the plugins contained in `' '` are not colored green. Uninstalling and reinstalling neovim fixed this, though it may be best to just remove `srcery-colors/srcery-vim`. **(REMOVED)**
-
-#### Coc 
+#### CoC 
+Conquror of Completion vim plugin allows intellisense like completion in vim/neovim.
 **Plugins used**
 - coc-pyright
 - coc-vimtex
