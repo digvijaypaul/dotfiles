@@ -1,14 +1,17 @@
+// sourced from https://github.com/hallettj/dot-vim/blob/master/home/.config/nvim/coc-settings.json with some substitutions from https://github.com/onsails/lspkind.nvim
 {
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "suggest.completionItemKindLabels": {
-    "keyword": "\uf1de", //  sliders
+    //"keyword": "\uf1de", //  sliders
+    "keyword": "",
     "variable": "\ue79b", //  isometric box
     "value": "\uf89f", //  digits 123
     "operator": "\u03a8", // Ψ greek letter psi
     "constructor": "\uf0ad", //  wrench
-    "function": "\u0192", // ƒ latin small letter F
+    //"function": "\u0192", // ƒ latin small letter F
+    "function": "",
     "reference": "\ufa46", // 渚 retweet symbol
     "constant": "\uf8fe", //  greek letter pi
     "method": "\uf09a", //  facebook "f"
