@@ -106,8 +106,8 @@ nnoremap <C-l> <C-W>l
 " Make adjusting split sizes easier
 noremap <silent> <C-Left> :vertical resize -5<CR>
 noremap <silent> <C-Right> :vertical resize +5<CR>
-noremap <silent> <C-Down> :resize +3<CR>
-noremap <silent> <C-Up> :resize -3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
 " Toggle horizontal and vertical orientation of split windows
 map <Leader>th <C-w>H
 map <Leader>tj <C-w>J
@@ -215,7 +215,7 @@ colorscheme onedark
 "
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = "all", -- a list of parser names, or "all"
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   highlight = {
     enable = true,              -- false will disable the whole extension
