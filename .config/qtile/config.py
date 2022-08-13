@@ -24,9 +24,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile.config import Key, Screen, Group, Drag, Click, Match
+from libqtile.config import DropDown, Key, Screen, Group, Drag, Click, Match, ScratchPad
 from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook
+from libqtile import bar, widget, hook
+# Import layout objects
+# qtile documentation seems to be outdated. To find out where to import from,
+# search the layout in the documentation and select its source. At the top of 
+# source page, it will say "Source code for libqtile.layout.xyz"
+from libqtile.layout.xmonad import MonadTall, MonadWide
+from libqtile.layout.floating import Floating
+from libqtile.layout.ratiotile import RatioTile
+from libqtile.layout.bsp import Bsp
 # The following libraries and `hook` above are used to call the autostart.sh
 # file
 import os
@@ -131,6 +139,7 @@ onedark = {
     "comment_grey":  "#5C6370"
 }
 
+
 # This is to call the `autostart.sh` file
 @hook.subscribe.startup_once
 def autostart():
@@ -148,26 +157,37 @@ for i in groups:
             desc="Switch to & move focused window to group {}".format(i.name)),
     ])
 
+# Append scratchpad with dropdowns to groups
+groups.append(ScratchPad('scratchpad', [
+    DropDown('quake', term, x=0.25, y=0.15, height=0.7, width=0.5)
+    ]))
+
+# Extend keys list for navigating scratchpads
+keys.extend([
+    Key([mod], 'grave', lazy.group['scratchpad'].dropdown_toggle('quake'), 
+        desc="Toggle a floating terminal window")
+    ])
+
 layouts = [
     # layout.Max(),
-    layout.MonadTall(border_focus=onedark["blue"],
+    MonadTall(border_focus=onedark["blue"],
                      border_normal=onedark["black"],
                      border_width=1,
                      single_border_width=0,
                      margin=10),
-    layout.MonadWide(border_focus=onedark["blue"],
+    MonadWide(border_focus=onedark["blue"],
                      border_normal=onedark["white"],
                      border_width=1,
                      margin=10),
-    layout.Bsp(border_focus=onedark["light_red"],
+    Bsp(border_focus=onedark["light_red"],
                border_normal=onedark["black"],
                border_width=1,
                margin=5,
                fair=False),
-    layout.RatioTile(border_focus=onedark["light_red"],
+    RatioTile(border_focus=onedark["light_red"],
                      border_normal=onedark["black"],
                      border_width=1,
-                     margin=5)
+                     margin=5),
 ]
 
 widget_defaults = dict(
@@ -233,15 +253,19 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
+floating_layout = Floating(
+    border_focus=onedark['cyan'],
+    border_normal=onedark['black'],
+    opacity=1,
+    float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
-    *layout.Floating.default_float_rules,
-    Match(wm_class='confirmreset'),  # gitk
-    Match(wm_class='makebranch'),  # gitk
-    Match(wm_class='maketag'),  # gitk
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
+        *Floating.default_float_rules,
+        Match(wm_class='confirmreset'),  # gitk
+        Match(wm_class='makebranch'),  # gitk
+        Match(wm_class='maketag'),  # gitk
+        Match(wm_class='ssh-askpass'),  # ssh-askpass
+        Match(title='branchdialog'),  # gitk
+        Match(title='pinentry'),  # GPG key password entry
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
